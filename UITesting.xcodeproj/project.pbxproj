@@ -13,6 +13,7 @@
 		6067FC842A36390700B9467D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6067FC832A36390700B9467D /* Preview Assets.xcassets */; };
 		6067FC8C2A36399E00B9467D /* UITestingBootcampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067FC8B2A36399E00B9467D /* UITestingBootcampView.swift */; };
 		6067FC8F2A363AB300B9467D /* UITestingBootcampVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067FC8E2A363AB300B9467D /* UITestingBootcampVM.swift */; };
+		6067FC912A36428000B9467D /* SignedInHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067FC902A36428000B9467D /* SignedInHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		6067FC832A36390700B9467D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6067FC8B2A36399E00B9467D /* UITestingBootcampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingBootcampView.swift; sourceTree = "<group>"; };
 		6067FC8E2A363AB300B9467D /* UITestingBootcampVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingBootcampVM.swift; sourceTree = "<group>"; };
+		6067FC902A36428000B9467D /* SignedInHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				6067FC8B2A36399E00B9467D /* UITestingBootcampView.swift */,
+				6067FC902A36428000B9467D /* SignedInHomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				6067FC8F2A363AB300B9467D /* UITestingBootcampVM.swift in Sources */,
 				6067FC8C2A36399E00B9467D /* UITestingBootcampView.swift in Sources */,
+				6067FC912A36428000B9467D /* SignedInHomeView.swift in Sources */,
 				6067FC7F2A36390500B9467D /* ContentView.swift in Sources */,
 				6067FC7D2A36390500B9467D /* UITestingApp.swift in Sources */,
 			);

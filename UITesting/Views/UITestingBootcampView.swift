@@ -13,14 +13,16 @@ struct UITestingBootcampView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.purple, Color.black]), startPoint: .topLeading, endPoint: .bottomLeading)
                 .ignoresSafeArea()
-            if vm.currentUserIsSignedIn {
-                Button(action: vm.signOutButtonPressed, label: {
-                    Text("I am signed in")
-                })
-                
-            }
-            if !vm.currentUserIsSignedIn {
-                signUpLayer
+            ZStack {
+                if vm.currentUserIsSignedIn {
+                    SignedInHomeView()
+                    
+                }
+                if !vm.currentUserIsSignedIn {
+                    signUpLayer
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .transition(.move(edge: .leading))
+                }
             }
             
         }
@@ -42,7 +44,11 @@ extension UITestingBootcampView {
                 .foregroundColor(.white)
                 .background(Color.black.opacity(0.3))
                 .cornerRadius(10)
-            Button (action: vm.signUpButtonPressed, label: {
+            Button (action: {
+                withAnimation(.spring()) {
+                    vm.signUpButtonPressed()
+                }
+            }, label: {
                 Text("Sign Up")
                     .font(.headline)
                     .padding()
