@@ -26,7 +26,16 @@ final class SignedInHomeView_UITest: XCTestCase {
     }
     
     func test_SignInHomeView_showAlertButton_shouldDisplayAlert() {
+        // Given
+        signIn()
         
+        // When
+        let alertButton = app.buttons["showAlertButton"]
+        alertButton.tap()
+        
+        // Then
+        let alert = app.alerts.firstMatch // finds the first alert instead of basing it on alert text
+        XCTAssertTrue(alert.exists) // alert should appear
     }
     
     func test_SignInHomeView_showAlertButton_shouldDisplayAlertandDismissAlert() {
@@ -51,9 +60,47 @@ final class SignedInHomeView_UITest: XCTestCase {
         // Then
         let doesAlertExist = alert.waitForExistence(timeout: 5)
         XCTAssertFalse(doesAlertExist) // should not exists after clicking
-                
     }
     
+    func test_SignInHomeView_navigationLinkToDestination_shouldNavigateToDestination() {
+        // Given
+        signIn()
+        
+        // When
+          // find and click on navigation link button
+        let navLinkButton = app/*@START_MENU_TOKEN@*/.buttons["navigationLinkToDestination"]/*[[".buttons[\"Navigation\"]",".buttons[\"navigationLinkToDestination\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        navLinkButton.tap()
+        
+        let destinationText = app.staticTexts["Destination"] // Desintation text appears
+        
+        // Then
+        XCTAssertTrue(destinationText.exists)
+    }
+    
+    func test_SignInHomeView_navigationLinkToDestination_shouldNavigateToDestinationAndGoBack() {
+        // Given
+        signIn()
+        
+        // When
+          // find and click on navigation link button
+        let navLinkButton = app/*@START_MENU_TOKEN@*/.buttons["navigationLinkToDestination"]/*[[".buttons[\"Navigation\"]",".buttons[\"navigationLinkToDestination\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        navLinkButton.tap()
+        
+        let destinationText = app.staticTexts["Destination"] // Desintation text appears
+        XCTAssertTrue(destinationText.exists)
+        
+        let backButton = app.navigationBars.buttons["Welcome"] // click back button
+        backButton.tap()
+        
+        // Then
+            // should see the Welcome Navigation Bar
+        let navBar = app.navigationBars["Welcome"]
+        XCTAssertTrue(navBar.exists)
+    }
+    
+    
+    
+    // Helper functions
     func signIn() {
         // Given
         let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
