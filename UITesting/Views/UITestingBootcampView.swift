@@ -44,6 +44,7 @@ extension UITestingBootcampView {
                 .foregroundColor(.white)
                 .background(Color.black.opacity(0.3))
                 .cornerRadius(10)
+                .accessibilityIdentifier("SignUpTextField") // for UI Test
                 
             Button (action: {
                 withAnimation(.spring()) {
@@ -57,6 +58,7 @@ extension UITestingBootcampView {
                     .foregroundColor(Color.black)
                     .background(Color.purple.opacity(0.5))
                     .cornerRadius(10)
+                    .accessibilityIdentifier("SignUpButton") // for UI Test
             })
         }
         .padding()

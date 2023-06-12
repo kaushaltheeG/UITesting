@@ -45,10 +45,9 @@ final class UITestingBootcampView_UITest: XCTestCase {
     func test_UITestingBootcampView_signUpButton_shouldSignIn() {
         
         // Given
-        let addYourNameTextField = app.textFields["Add your name..."]
-        
+        let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
         // When
-        addYourNameTextField.tap()
+        addYourNameTextField.tap() // taps on text field
         
         let aKey = app/*@START_MENU_TOKEN@*/.keys["A"]/*[[".keyboards.keys[\"A\"]",".keys[\"A\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "A"
         aKey.tap()
@@ -59,9 +58,9 @@ final class UITestingBootcampView_UITest: XCTestCase {
         let returnButton = app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/ // User clicks on "return"
         returnButton.tap()
         
-        app.buttons["Sign Up"].tap() // User clicks on "Sign Up"
+        app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
         
-        let navBar = app.navigationBars["Welcome"] // NavBar with Welcome Label
+        let navBar = app.navigationBars["Welcome"] // find the NavBar with Welcome Label
         
         // Then
         XCTAssertTrue(navBar.exists) // check if the welcome navbar exists after signing in
