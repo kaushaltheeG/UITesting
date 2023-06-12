@@ -23,10 +23,9 @@ struct SignedInHomeView: View {
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
                         .background(Color.red.opacity(0.7))
-                        .cornerRadius(10)
-                        
-                        
+                        .cornerRadius(10) 
                 })
+                .accessibilityIdentifier("showAlertButton")
                 .alert(isPresented: $showAlert, content: {
                     return Alert(title: Text("Welcome to the app"))
                 })
@@ -39,6 +38,7 @@ struct SignedInHomeView: View {
                         .foregroundColor(.white)
                         .background(Color.purple)
                         .cornerRadius(10)
+                        .accessibilityIdentifier("navigationLinkToDestination")
                 })
             }
             .padding()

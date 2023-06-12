@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		604692E02A37B99700E4F1F9 /* SignedInHomeView_UITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604692DF2A37B99700E4F1F9 /* SignedInHomeView_UITest.swift */; };
 		6067FC7D2A36390500B9467D /* UITestingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067FC7C2A36390500B9467D /* UITestingApp.swift */; };
 		6067FC7F2A36390500B9467D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067FC7E2A36390500B9467D /* ContentView.swift */; };
 		6067FC812A36390700B9467D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6067FC802A36390700B9467D /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		604692DF2A37B99700E4F1F9 /* SignedInHomeView_UITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInHomeView_UITest.swift; sourceTree = "<group>"; };
 		6067FC792A36390500B9467D /* UITesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6067FC7C2A36390500B9467D /* UITestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingApp.swift; sourceTree = "<group>"; };
 		6067FC7E2A36390500B9467D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				6067FC982A36471200B9467D /* UITesting_UITests.swift */,
 				6067FC9A2A36471200B9467D /* UITesting_UITestsLaunchTests.swift */,
 				6067FCA12A36486300B9467D /* UITestingBootcampView_UITest.swift */,
+				604692DF2A37B99700E4F1F9 /* SignedInHomeView_UITest.swift */,
 			);
 			path = UITesting_UITests;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			files = (
 				6067FCA22A36486300B9467D /* UITestingBootcampView_UITest.swift in Sources */,
 				6067FC992A36471200B9467D /* UITesting_UITests.swift in Sources */,
+				604692E02A37B99700E4F1F9 /* SignedInHomeView_UITest.swift in Sources */,
 				6067FC9B2A36471200B9467D /* UITesting_UITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
