@@ -44,6 +44,7 @@ extension UITestingBootcampView {
                 .foregroundColor(.white)
                 .background(Color.black.opacity(0.3))
                 .cornerRadius(10)
+                
             Button (action: {
                 withAnimation(.spring()) {
                     vm.signUpButtonPressed()
