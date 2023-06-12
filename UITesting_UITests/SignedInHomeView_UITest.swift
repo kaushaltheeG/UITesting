@@ -30,8 +30,7 @@ final class SignedInHomeView_UITest: XCTestCase {
         signIn()
         
         // When
-        let alertButton = app.buttons["showAlertButton"]
-        alertButton.tap()
+        tapAlertButton(shouldDismssAlert: false)
         
         // Then
         let alert = app.alerts.firstMatch // finds the first alert instead of basing it on alert text
@@ -39,26 +38,14 @@ final class SignedInHomeView_UITest: XCTestCase {
     }
     
     func test_SignInHomeView_showAlertButton_shouldDisplayAlertandDismissAlert() {
-
         // Given
         signIn()
         
         // When
-        let alertButton = app.buttons["showAlertButton"]
-        alertButton.tap()
-        
-        //  let alert = app.alerts["Welcome to the app"].scrollViews.otherElements.buttons["OK"].tap()
-        let alert = app.alerts.firstMatch // finds the first alert instead of basing it on alert text
-        XCTAssertTrue(alert.exists) // alert should appear
-        
-        let alertOkButton = alert.buttons["OK"]
-        let alertOkButtonExists = alertOkButton.waitForExistence(timeout: 5) // waits up to 5 seconds for element to exists; better than using sleep(1)
-        XCTAssertTrue(alertOkButtonExists)
-        
-        alertOkButton.tap()
+        tapAlertButton(shouldDismssAlert: true)
         
         // Then
-        let doesAlertExist = alert.waitForExistence(timeout: 5)
+        let doesAlertExist = app.alerts.firstMatch.waitForExistence(timeout: 5)
         XCTAssertFalse(doesAlertExist) // should not exists after clicking
     }
     
@@ -67,13 +54,10 @@ final class SignedInHomeView_UITest: XCTestCase {
         signIn()
         
         // When
-          // find and click on navigation link button
-        let navLinkButton = app/*@START_MENU_TOKEN@*/.buttons["navigationLinkToDestination"]/*[[".buttons[\"Navigation\"]",".buttons[\"navigationLinkToDestination\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        navLinkButton.tap()
-        
-        let destinationText = app.staticTexts["Destination"] // Desintation text appears
+        tapNavigationButton(shouldToggleBack: false)
         
         // Then
+        let destinationText = app.staticTexts["Destination"] // Desintation text appears
         XCTAssertTrue(destinationText.exists)
     }
     
@@ -82,23 +66,17 @@ final class SignedInHomeView_UITest: XCTestCase {
         signIn()
         
         // When
-          // find and click on navigation link button
-        let navLinkButton = app/*@START_MENU_TOKEN@*/.buttons["navigationLinkToDestination"]/*[[".buttons[\"Navigation\"]",".buttons[\"navigationLinkToDestination\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        navLinkButton.tap()
-        
-        let destinationText = app.staticTexts["Destination"] // Desintation text appears
-        XCTAssertTrue(destinationText.exists)
-        
-        let backButton = app.navigationBars.buttons["Welcome"] // click back button
-        backButton.tap()
+        tapNavigationButton(shouldToggleBack: true)
         
         // Then
             // should see the Welcome Navigation Bar
         let navBar = app.navigationBars["Welcome"]
         XCTAssertTrue(navBar.exists)
     }
-    
-    
+
+}
+
+extension SignedInHomeView_UITest {
     
     // Helper functions
     func signIn() {
@@ -117,12 +95,29 @@ final class SignedInHomeView_UITest: XCTestCase {
         returnButton.tap()
         
         app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
-        
-        let navBar = app.navigationBars["Welcome"] // find the NavBar with Welcome Label
-        
-        // Then
-        XCTAssertTrue(navBar.exists) // check if the welcome navbar exists after signing in
-        
     }
-
+    
+    func tapAlertButton(shouldDismssAlert: Bool) {
+        let alertButton = app.buttons["showAlertButton"]
+        alertButton.tap()
+        
+        if shouldDismssAlert {
+            let alert = app.alerts.firstMatch // finds the first alert instead of basing it on alert text
+            let alertOkButton = alert.buttons["OK"]
+            let alertOkButtonExists = alertOkButton.waitForExistence(timeout: 5) // waits up to 5 seconds for element to exists; better than using sleep(1)
+            XCTAssertTrue(alertOkButtonExists)
+            
+            alertOkButton.tap()
+        }
+    }
+    
+    func tapNavigationButton(shouldToggleBack: Bool) {
+        let navLinkButton = app/*@START_MENU_TOKEN@*/.buttons["navigationLinkToDestination"]/*[[".buttons[\"Navigation\"]",".buttons[\"navigationLinkToDestination\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        navLinkButton.tap()
+        
+        if shouldToggleBack {
+            let backButton = app.navigationBars.buttons["Welcome"] // click back button
+            backButton.tap()
+        }
+    }
 }

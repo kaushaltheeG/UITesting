@@ -26,50 +26,66 @@ final class UITestingBootcampView_UITest: XCTestCase {
 
 
     func test_UITestingBootcampView_signUpButton_shouldNotSignIn() {
-        // Given
-        let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
+        /* Original
+            // Given
+            let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
+            // When
+            addYourNameTextField.tap() // taps on text field
+            let returnButton = app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/ // User clicks on "return"
+            returnButton.tap()
+            app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
+         */
         
-        // When
-        addYourNameTextField.tap() // taps on text field
         
-        let returnButton = app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/ // User clicks on "return"
-        returnButton.tap()
-        
-        app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
+        signUpAndSignIn(shouldTypeOnKeyboard: false)
         let navBar = app.navigationBars["Welcome"] // find the NavBar with Welcome Label
         
         // Then
         XCTAssertFalse(navBar.exists) // nav bar should not exists
-        
     }
     
     func test_UITestingBootcampView_signUpButton_shouldSignIn() {
+        /*Original
+            // Given
+            let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
+            // When
+            addYourNameTextField.tap() // taps on text field
+            let aKey = app/*@START_MENU_TOKEN@*/.keys["A"]/*[[".keyboards.keys[\"A\"]",".keys[\"A\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "A"
+            aKey.tap()
+            let aKey2 = app/*@START_MENU_TOKEN@*/.keys["a"]/*[[".keyboards.keys[\"a\"]",".keys[\"a\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "a"
+            aKey2.tap()
+            let returnButton = app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/ // User clicks on "return"
+            returnButton.tap()
+            app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
+         */
         
-        // Given
+        
+        signUpAndSignIn(shouldTypeOnKeyboard: true)
+        let navBar = app.navigationBars["Welcome"] // find the NavBar with Welcome Label
+        
+        // Then
+        XCTAssertTrue(navBar.exists) // check if the welcome navbar exists after signing in
+    }
+}
+
+extension UITestingBootcampView_UITest {
+    // Helper functions
+    func signUpAndSignIn(shouldTypeOnKeyboard: Bool) {
         let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
-        // When
         addYourNameTextField.tap() // taps on text field
         
-        let aKey = app/*@START_MENU_TOKEN@*/.keys["A"]/*[[".keyboards.keys[\"A\"]",".keys[\"A\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "A"
-        aKey.tap()
-        
-        let aKey2 = app/*@START_MENU_TOKEN@*/.keys["a"]/*[[".keyboards.keys[\"a\"]",".keys[\"a\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "a"
-        aKey2.tap()
-        
+        if (shouldTypeOnKeyboard) {
+            let aKey = app/*@START_MENU_TOKEN@*/.keys["A"]/*[[".keyboards.keys[\"A\"]",".keys[\"A\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "A"
+            aKey.tap()
+            
+            let aKey2 = app/*@START_MENU_TOKEN@*/.keys["a"]/*[[".keyboards.keys[\"a\"]",".keys[\"a\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ // User clicks on Char "a"
+            aKey2.tap()
+        }
         let returnButton = app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/ // User clicks on "return"
         returnButton.tap()
         
         app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
         
-        let navBar = app.navigationBars["Welcome"] // find the NavBar with Welcome Label
-        
-        // Then
-        XCTAssertTrue(navBar.exists) // check if the welcome navbar exists after signing in
-            
         
     }
-    
-
-
-
 }
