@@ -11,7 +11,11 @@ class UITestingBootcampVM: ObservableObject {
     
     let placeholderText: String = "Add your name..."
     @Published var textFieldText: String = ""
-    @Published var currentUserIsSignedIn: Bool = false
+    @Published var currentUserIsSignedIn: Bool
+    
+    init(currentUserIsSignedIn: Bool) {
+        self.currentUserIsSignedIn = currentUserIsSignedIn
+    }
     
     func signUpButtonPressed() {
         guard !textFieldText.isEmpty else { return }

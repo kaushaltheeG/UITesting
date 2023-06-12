@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct UITestingBootcampView: View {
-    @StateObject private var vm: UITestingBootcampVM = UITestingBootcampVM()
+    @StateObject private var vm: UITestingBootcampVM
+    
+    init(currentUserIsSignedIn: Bool) {
+        // _ means stateObject
+        _vm = StateObject(wrappedValue: UITestingBootcampVM(currentUserIsSignedIn: currentUserIsSignedIn))
+    }
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.purple, Color.black]), startPoint: .topLeading, endPoint: .bottomLeading)
@@ -31,7 +36,7 @@ struct UITestingBootcampView: View {
 
 struct UITestingBootcampView_Previews: PreviewProvider {
     static var previews: some View {
-        UITestingBootcampView()
+        UITestingBootcampView(currentUserIsSignedIn: true)
     }
 }
 
