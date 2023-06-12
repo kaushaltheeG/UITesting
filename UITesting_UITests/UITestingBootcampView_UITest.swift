@@ -26,19 +26,20 @@ final class UITestingBootcampView_UITest: XCTestCase {
 
 
     func test_UITestingBootcampView_signUpButton_shouldNotSignIn() {
+        // Given
+        let addYourNameTextField = app.textFields["SignUpTextField"] // instead of using the place holder, we use the accessibilityIdentifier
         
-        let app = XCUIApplication()
-        app.children(matching: .window).element(boundBy: 1).children(matching: .other).element.tap()
-        app.textFields["Add your name..."].tap()
+        // When
+        addYourNameTextField.tap() // taps on text field
         
-        let aKey = app/*@START_MENU_TOKEN@*/.keys["A"]/*[[".keyboards.keys[\"A\"]",".keys[\"A\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        aKey.tap()
-        aKey.tap()
+        let returnButton = app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/ // User clicks on "return"
+        returnButton.tap()
         
-        let aKey2 = app/*@START_MENU_TOKEN@*/.keys["a"]/*[[".keyboards.keys[\"a\"]",".keys[\"a\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        aKey2.tap()
-        aKey2.tap()
-
+        app.buttons["SignUpButton"].tap() // User clicks on "Sign Up"
+        let navBar = app.navigationBars["Welcome"] // find the NavBar with Welcome Label
+        
+        // Then
+        XCTAssertFalse(navBar.exists) // nav bar should not exists
         
     }
     
